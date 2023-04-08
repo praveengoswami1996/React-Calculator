@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    background: #fc4a1a;
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
+    background: linear-gradient(to right, #f7b733, #fc4a1a); 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.calculator__grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.calculator__grid > button{
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
-.App-link {
-  color: #61dafb;
+.calculator__grid > button:hover{
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.col-two {
+    grid-column: span 2;
+}
+
+.calculator__grid-output {
+    grid-column: 1 / -1; /*grid-column is a shorthand property for grid-column-start and grid-column-end*/
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.calculator__grid-output .calculator__grid-output_previous {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.5rem;
+}
+
+.calculator__grid-output .calculator__grid-output_current {
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+
+/***********************MEDIA QUERIES*****************************/
+
+@media screen and (max-width: 450px) {
+    .calculator__grid {
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .calculator__grid {
+        grid-template-columns: repeat(4, 60px);
+        grid-template-rows: minmax(80px, auto) repeat(5, 60px);
+    }
+
+    .calculator__grid > button{
+        font-size: 1.2rem;
+    }
+
+    .calculator__grid-output .calculator__grid-output_previous {
+        font-size: 1rem;
+    }
+    
+    .calculator__grid-output .calculator__grid-output_current {
+        font-size: 1.8rem;
+    }
 }
